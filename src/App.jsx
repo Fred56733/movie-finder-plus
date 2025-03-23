@@ -186,7 +186,7 @@ function App() {
           <p><strong>Total Movies:</strong> {totalMovies}</p>
           <p><strong>Average IMDb Rating:</strong> {isNaN(averageRating) ? "N/A" : averageRating}</p>
           <p><strong>Genre Distribution:</strong></p>
-          <ul>
+          <ul className='genre-distribution'>
             {Object.entries(genreCounts).map(([genre, count]) => (
               <li key={genre}>{genre}: {count}</li>
             ))}
