@@ -141,13 +141,9 @@ p,li {
 }
 
 .genre-distribution li {
-  flex: 1 1 20%; /* Adjust the percentage to control the width of each item */
+  flex: 1 1 15%; /* Adjust the percentage to control the width of each item */
   margin: 5px;
   padding: 5px;
-  background-color: #282828;
-  border-color: white;
-  border-width: 2px;
-  border-radius: 5px;
   text-align: center;
   margin-left: 5px;
   margin-right: 5px;
