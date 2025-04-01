@@ -4,6 +4,8 @@ import Filters from './Components/Filters';
 import './Components/Filters.css';
 import Stats from './Components/Stats';
 import MovieList from './Components/MovieList';
+import './Components/MovieCard.css';
+import './Components/MovieList.css';
 import { fetchMovies } from './Components/FetchMovies';
 
 function App() {
