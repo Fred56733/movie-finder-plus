@@ -1,3 +1,4 @@
+import './Filters.css';
 
 // Filters Component
 function Filters ({

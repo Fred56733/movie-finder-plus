@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Filters from './Components/Filters';
-import './Components/Filters.css';
-import Stats from './Components/Stats';
-import MovieList from './Components/MovieList';
-import './Components/MovieCard.css';
-import './Components/MovieList.css';
+import Homepage from './Pages/Homepage';
 import { fetchMovies } from './Components/FetchMovies';
 
 function App() {
@@ -64,32 +59,22 @@ function App() {
   return (
     <div className="app-container">
       <h1>Movie Finder</h1>
-
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search for a movie..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-      <Filters
+      <Homepage
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
         setSelectedGenre={setSelectedGenre}
         setSelectedRating={setSelectedRating}
         setSelectedRuntime={setSelectedRuntime}
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
         setSortBy={setSortBy}
+        sortedMovies={sortedMovies}
+        totalMovies={totalMovies}
+        averageRating={averageRating}
+        genreCounts={genreCounts}
+        error={error}
+        onMovieClick={movie}
       />
-      {sortedMovies.length > 0 && (
-        <Stats
-          totalMovies={totalMovies}
-          averageRating={averageRating}
-          genreCounts={genreCounts}
-        />
-      )}
-      {error}
-      <MovieList movies={sortedMovies} />
     </div>
   );
 }
