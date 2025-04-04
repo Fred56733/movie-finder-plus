@@ -42,6 +42,7 @@ function Homepage({
           totalMovies={totalMovies}
           averageRating={averageRating}
           genreCounts={genreCounts}
+          sortedMovies={sortedMovies}
         />
       )}
       {error}
