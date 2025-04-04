@@ -1,10 +1,25 @@
 import React from 'react';
-import './DetailView.css';
+import { useLocation, useNavigate } from 'react-router-dom';
+// import './DetailView.css';
 
-function DetailView({ movie, onBack }) {
+function DetailView() {
+  const location = useLocation(); // Access the location object
+  const navigate = useNavigate(); // For navigation
+  const movie = location.state?.movie; // Retrieve the movie object from state
+
+  // Handle the case where no movie data is available
+  if (!movie) {
+    return (
+      <div className="movie-detail">
+        <p>No movie data available.</p>
+        <button onClick={() => navigate(-1)}>Back</button>
+      </div>
+    );
+  }
+
   return (
     <div className="movie-detail">
-      <button onClick={onBack}>Back</button>
+      <button onClick={() => navigate(-1)}>Back</button>
       <h2>{movie.Title}</h2>
       <img src={movie.Poster} alt={movie.Title} />
       <p><strong>Year:</strong> {movie.Year}</p>
