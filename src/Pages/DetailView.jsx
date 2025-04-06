@@ -11,39 +11,43 @@ function DetailView() {
     return (
       <div className="movie-detail">
         <p>No movie data available.</p>
-        <button onClick={() => navigate(-1)}>Back</button>
+        <button className="back-button" onClick={() => navigate(-1)}>Back</button>
       </div>
     );
   }
 
   return (
-    <div className="movie-detail">
-      <button onClick={() => navigate(-1)}>Back</button>
-      <h2>{movie.Title}</h2>
-      <img src={movie.Poster} alt={movie.Title} />
-      <p><strong>Year:</strong> {movie.Year}</p>
-      <p><strong>Rated:</strong> {movie.Rated}</p>
-      <p><strong>Released:</strong> {movie.Released}</p>
-      <p><strong>Runtime:</strong> {movie.Runtime}</p>
-      <p><strong>Genre:</strong> {movie.Genre}</p>
-      <p><strong>Director:</strong> {movie.Director}</p>
-      <p><strong>Writer:</strong> {movie.Writer}</p>
-      <p><strong>Actors:</strong> {movie.Actors}</p>
-      <p><strong>Plot:</strong> {movie.Plot}</p>
-      <p><strong>Language:</strong> {movie.Language}</p>
-      <p><strong>Country:</strong> {movie.Country}</p>
-      <p><strong>Awards:</strong> {movie.Awards}</p>
-      <p><strong>Box Office:</strong> {movie.BoxOffice}</p>
-      <p><strong>IMDb Rating:</strong> {movie.imdbRating}</p>
-      <p><strong>IMDb Votes:</strong> {movie.imdbVotes}</p>
-      <p><strong>Ratings:</strong></p>
-      <ul>
-        {movie.Ratings.map((rating, index) => (
-          <li key={index}>
-            {rating.Source}: {rating.Value}
-          </li>
-        ))}
-      </ul>
+    <div className="movie-detail container">
+      <button className="back-button" onClick={() => navigate(-1)}>Back</button>
+      <div className="card">
+        <img className="card-image" src={movie.Poster} alt={movie.Title} />
+        <div className="card-content">
+          <h2 className="card-title">{movie.Title}</h2>
+          <p className="card-details"><strong>Year:</strong> {movie.Year}</p>
+          <p className="card-details"><strong>Rated:</strong> {movie.Rated}</p>
+          <p className="card-details"><strong>Released:</strong> {movie.Released}</p>
+          <p className="card-details"><strong>Runtime:</strong> {movie.Runtime}</p>
+          <p className="card-details"><strong>Genre:</strong> {movie.Genre}</p>
+          <p className="card-details"><strong>Director:</strong> {movie.Director}</p>
+          <p className="card-details"><strong>Writer:</strong> {movie.Writer}</p>
+          <p className="card-details"><strong>Actors:</strong> {movie.Actors}</p>
+          <p className="card-details"><strong>Plot:</strong> {movie.Plot}</p>
+          <p className="card-details"><strong>Language:</strong> {movie.Language}</p>
+          <p className="card-details"><strong>Country:</strong> {movie.Country}</p>
+          <p className="card-details"><strong>Awards:</strong> {movie.Awards}</p>
+          <p className="card-details"><strong>Box Office:</strong> {movie.BoxOffice}</p>
+          <p className="card-details"><strong>IMDb Rating:</strong> {movie.imdbRating}</p>
+          <p className="card-details"><strong>IMDb Votes:</strong> {movie.imdbVotes}</p>
+          <p className="card-details"><strong>Ratings:</strong></p>
+          <ul className="ratings-list">
+            {movie.Ratings.map((rating, index) => (
+              <li key={index} className="card-details">
+                {rating.Source}: {rating.Value}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

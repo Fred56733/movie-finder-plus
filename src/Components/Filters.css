@@ -1,3 +1,5 @@
+/* Filters.css */
+/* Styles for the filters container */
 .filters {
     display: flex;
     justify-content: space-between;
@@ -11,6 +13,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
+/* Select and input style elements */
 .filters select,
 .filters input {
     width: 18%; 
@@ -23,21 +26,25 @@
     transition: all 0.3s ease; 
 }
 
+/* Focus styles for select and input elements */
 .filters select:focus,
 .filters input:focus {
     border-color: #007bff; 
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
 }
 
+/* Hover styles for select and input elements */
 .filters select:hover,
 .filters input:hover {
     border-color: #007bff; 
 }
 
+/* Additional styles for select elements */
 .filters select {
     cursor: pointer; 
 }
 
+/* Additional styles for input elements */
 .filters input {
     text-align: center; 
 }
