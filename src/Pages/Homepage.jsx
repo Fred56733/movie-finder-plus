@@ -2,6 +2,7 @@ import React from 'react';
 import Filters from '../Components/Filters';
 import Stats from '../Components/Stats';
 import MovieList from '../Components/MovieList';
+import './Homepage.css';
 
 function Homepage({
   searchTerm,
@@ -21,14 +22,15 @@ function Homepage({
 }) {
   return (
     <div>
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search for a movie..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+      {sortedMovies.length > 0 && (
+        <Stats
+        totalMovies={totalMovies}
+        averageRating={averageRating}
+        genreCounts={genreCounts}
+        sortedMovies={sortedMovies}
         />
-      </div>
+      )}
+      {error}
       <Filters
         setSelectedGenre={setSelectedGenre}
         setSelectedRating={setSelectedRating}
@@ -37,15 +39,14 @@ function Homepage({
         setSelectedYear={setSelectedYear}
         setSortBy={setSortBy}
       />
-      {sortedMovies.length > 0 && (
-        <Stats
-          totalMovies={totalMovies}
-          averageRating={averageRating}
-          genreCounts={genreCounts}
-          sortedMovies={sortedMovies}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search for a movie..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
-      )}
-      {error}
+      </div>
       <MovieList movies={sortedMovies} onMovieClick={onMovieClick} />
     </div>
   );

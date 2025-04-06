@@ -1,16 +1,16 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Bar, Line } from 'react-chartjs-2';
+import './Stats.css'; // Import your styling
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
 
 function Stats({ totalMovies, averageRating, genreCounts, sortedMovies }) {
-  // Prepare data for the bar graph
+  // Prepare data for the genre bar graph
   const genres = Object.keys(genreCounts);
   const counts = Object.values(genreCounts);
 
-  const barData = {
+  const genreBarData = {
     labels: genres,
     datasets: [
       {
@@ -23,7 +23,7 @@ function Stats({ totalMovies, averageRating, genreCounts, sortedMovies }) {
     ],
   };
 
-  const barOptions = {
+  const genreBarOptions = {
     responsive: true,
     plugins: {
       legend: {
@@ -36,41 +36,60 @@ function Stats({ totalMovies, averageRating, genreCounts, sortedMovies }) {
     },
   };
 
-  // Get the top 10 movies sorted by IMDb rating
+  // Prepare data for the top-rated movies line graph
   const topRatedMovies = [...sortedMovies]
     .sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating))
     .slice(0, 10);
 
+  const lineData = {
+    labels: topRatedMovies.map((movie) => movie.Title),
+    datasets: [
+      {
+        label: 'IMDb Rating',
+        data: topRatedMovies.map((movie) => parseFloat(movie.imdbRating)),
+        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(54, 162, 235, 1)',
+      },
+    ],
+  };
+
+  const lineOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'IMDb Ratings of Top 10 Movies',
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 10, // IMDb ratings are out of 10
+      },
+    },
+  };
+
   return (
     <div className="stats">
       <p><strong>Total Movies:</strong> {totalMovies}</p>
-      
-      <div className="bar-graph">
-        <Bar data={barData} options={barOptions} />
-      </div>
+      <p><strong>Average IMDb Rating:</strong> {isNaN(averageRating) ? "N/A" : averageRating}</p>
 
-      <div className="top-rated-movies-table">
-        <h3>Top Rated Movies</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Year</th>
-              <th>Genre</th>
-              <th>IMDb Rating</th>
-            </tr>
-          </thead>
-          <tbody>
-            {topRatedMovies.map((movie) => (
-              <tr key={movie.imdbID}>
-                <td>{movie.Title}</td>
-                <td>{movie.Year}</td>
-                <td>{movie.Genre || 'Unknown'}</td>
-                <td>{movie.imdbRating || 'N/A'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="stats-container">
+        <div className="bar-graph">
+          <Bar data={genreBarData} options={genreBarOptions} />
+        </div>
+
+        <div className="line-graph">
+          <Line data={lineData} options={lineOptions} />
+        </div>
       </div>
     </div>
   );

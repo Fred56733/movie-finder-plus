@@ -1,13 +1,43 @@
 .filters {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;    
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 10px; 
+    margin: 20px;
+    padding: 10px 15px; 
+    background-color: #f9f9f9; 
+    border-radius: 25px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
-input {
-    width: 20%;
+.filters select,
+.filters input {
+    width: 18%; 
+    min-width: 120px;
+    padding: 10px 15px; 
+    font-size: 14px; 
+    border: 1px solid #ccc;
+    border-radius: 25px; 
+    outline: none; 
+    transition: all 0.3s ease; 
 }
 
-select {
-    width: 20%;
+.filters select:focus,
+.filters input:focus {
+    border-color: #007bff; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+.filters select:hover,
+.filters input:hover {
+    border-color: #007bff; 
+}
+
+.filters select {
+    cursor: pointer; 
+}
+
+.filters input {
+    text-align: center; 
 }

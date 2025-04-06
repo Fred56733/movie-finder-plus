@@ -1,13 +1,12 @@
 import React from 'react';
+import './DetailView.css'; 
 import { useLocation, useNavigate } from 'react-router-dom';
-// import './DetailView.css';
 
 function DetailView() {
-  const location = useLocation(); // Access the location object
-  const navigate = useNavigate(); // For navigation
-  const movie = location.state?.movie; // Retrieve the movie object from state
+  const location = useLocation();
+  const navigate = useNavigate();
+  const movie = location.state?.movie;
 
-  // Handle the case where no movie data is available
   if (!movie) {
     return (
       <div className="movie-detail">
@@ -23,12 +22,28 @@ function DetailView() {
       <h2>{movie.Title}</h2>
       <img src={movie.Poster} alt={movie.Title} />
       <p><strong>Year:</strong> {movie.Year}</p>
-      <p><strong>Genre:</strong> {movie.Genre || "Unknown"}</p>
-      <p><strong>IMDb Rating:</strong> {movie.imdbRating || "N/A"}</p>
-      <p><strong>Runtime:</strong> {movie.Runtime || "N/A"}</p>
-      <p><strong>Actors:</strong> {movie.Actors || "N/A"}</p>
-      <p><strong>Awards:</strong> {movie.Awards || "N/A"}</p>
-      <p><strong>Plot:</strong> {movie.Plot || "N/A"}</p>
+      <p><strong>Rated:</strong> {movie.Rated}</p>
+      <p><strong>Released:</strong> {movie.Released}</p>
+      <p><strong>Runtime:</strong> {movie.Runtime}</p>
+      <p><strong>Genre:</strong> {movie.Genre}</p>
+      <p><strong>Director:</strong> {movie.Director}</p>
+      <p><strong>Writer:</strong> {movie.Writer}</p>
+      <p><strong>Actors:</strong> {movie.Actors}</p>
+      <p><strong>Plot:</strong> {movie.Plot}</p>
+      <p><strong>Language:</strong> {movie.Language}</p>
+      <p><strong>Country:</strong> {movie.Country}</p>
+      <p><strong>Awards:</strong> {movie.Awards}</p>
+      <p><strong>Box Office:</strong> {movie.BoxOffice}</p>
+      <p><strong>IMDb Rating:</strong> {movie.imdbRating}</p>
+      <p><strong>IMDb Votes:</strong> {movie.imdbVotes}</p>
+      <p><strong>Ratings:</strong></p>
+      <ul>
+        {movie.Ratings.map((rating, index) => (
+          <li key={index}>
+            {rating.Source}: {rating.Value}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
