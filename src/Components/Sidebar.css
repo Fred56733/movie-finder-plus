@@ -1,0 +1,81 @@
+.sidebar {
+  height: 100vh;
+  width: 180px; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease; 
+  overflow: hidden;
+  z-index: 10;
+}
+
+.sidebar.collapsed {
+  width: 30px;
+  padding: 10px 5px; 
+}
+
+.sidebar h2,
+.sidebar ul,
+.sidebar-info {
+  opacity: 1;
+  transition: opacity 0.3s ease; 
+}
+
+.sidebar.collapsed h2,
+.sidebar.collapsed ul,
+.sidebar.collapsed .sidebar-info {
+  opacity: 0;
+  pointer-events: none; 
+}
+
+.sidebar .toggle-button {
+  top: 10px;
+  right: -15px;
+  background-color: #111;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.sidebar .toggle-button:hover {
+  background-color: #575757;
+}
+
+.sidebar h2 {
+  text-align: center;
+  color: #f1f1f1;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: rgb(39, 133, 255);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+.sidebar-info {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ccc;
+}

@@ -1,14 +1,17 @@
-
+// FetchMovies.jsx
 export const fetchMovies = async ( apiKey, setMovies, setError) => {
  
+    // Check if the API key is provided
     if (!apiKey) {
       console.error("API Key is missing!");
       setError("API Key is missing!");
       return;
     }
 
+    // Clear previous error state
     setError(null);
 
+    // List of search terms to fetch movies
     const searchTerms = [
       "star", "batman", "avengers", "matrix", "jurassic", "spider", "lord", "harry",
       "fast", "furious", "mission", "terminator", "hobbit", "godzilla", "transformers",
@@ -16,12 +19,14 @@ export const fetchMovies = async ( apiKey, setMovies, setError) => {
       "gladiator", "titanic", "interstellar", "joker", "gravity", "avatar",
     ];
 
+    // Fetch movies for each search term
     const movieRequests = searchTerms.map(term =>
       fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${term}`)
         .then(res => res.json())
         .catch(() => null)
     );
 
+    // Wait for all requests to complete
     try {
       const responses = await Promise.all(movieRequests);
       const movieResults = responses
@@ -48,6 +53,7 @@ export const fetchMovies = async ( apiKey, setMovies, setError) => {
   }
 };
 
+  // Function to fetch full movie details
   const fetchFullMovieDetails = async (moviesList, apiKey) => {
     const detailedMovieRequests = moviesList.map(movie =>
       fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`)
@@ -58,6 +64,7 @@ export const fetchMovies = async ( apiKey, setMovies, setError) => {
         })
     );
   
+    // Wait for all detailed movie requests to complete
     try {
       const detailedMovies = await Promise.all(detailedMovieRequests);
       const validMovies = detailedMovies.filter(movie => movie && movie.Response === "True");

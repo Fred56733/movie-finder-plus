@@ -1,3 +1,5 @@
+// Filters.jsx
+import './Filters.css';
 
 // Filters Component
 function Filters ({
@@ -9,6 +11,7 @@ function Filters ({
     setSortBy
 }) { return (
     <div className="filters">
+        {/** Filter by Genre **/}
         <select onChange={(e) => setSelectedGenre(e.target.value)}>     
             <option value="">All Genres</option>
             <option value="Action">Action</option>
@@ -31,6 +34,7 @@ function Filters ({
             <option value="War">War</option>
         </select>
 
+        {/** Filter by IMDB Rating **/}
         <select onChange={(e) => setSelectedRating(e.target.value)}>
             <option value="">Min IMDb Rating</option>
             <option value="8.0">8+</option>
@@ -39,6 +43,7 @@ function Filters ({
             <option value="5.0">5+</option>
         </select>
 
+        {/** Filter by Runtime **/}
         <select onChange={(e) => setSelectedRuntime(e.target.value)}>
             <option value="">Max Runtime (min)</option>
             <option value="120">Under 2 hours</option>
@@ -46,6 +51,7 @@ function Filters ({
             <option value="60">Under 1 hour</option>
         </select>
 
+        {/** Filter by Year **/}
         <input
             type="text"
             placeholder="Year"
@@ -53,6 +59,7 @@ function Filters ({
             onChange={(e) => setSelectedYear(e.target.value)}
         />
 
+        {/** Sort by rating or year **/}
             <select onChange={(e) => setSortBy(e.target.value)}>
                 <option value="">Sort By</option>
                 <option value="rating">Highest IMDb Rating</option>

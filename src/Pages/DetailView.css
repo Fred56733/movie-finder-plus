@@ -1,0 +1,61 @@
+/* General styling for a user-friendly and bubbly design */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #ffffffe8;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    align-items: center;
+    display: flex;
+    z-index: 1;
+}
+
+/* Center the image within the card */
+.card img {
+    display: block;
+    margin: 0 auto;
+    height: 700px;
+    margin-left: 15px;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #161616;
+    margin-bottom: 10px;
+}
+
+.card-details {
+    font-size: 1rem;
+    color: #323131;
+    margin-bottom: 5px;
+}
+
+.card-details a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.card-details a:hover {
+    text-decoration: underline;
+}

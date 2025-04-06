@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import Filters from './Components/Filters';
-import './Components/Filters.css';
-import Stats from './Components/Stats';
-import MovieList from './Components/MovieList';
-import './Components/MovieCard.css';
-import './Components/MovieList.css';
-import { fetchMovies } from './Components/FetchMovies';
+import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import "./App.css";
+import Homepage from "./Pages/Homepage";
+import DetailView from "./Pages/DetailView";
+import { fetchMovies } from "./Components/FetchMovies";
+import Sidebar from "./Components/Sidebar"; 
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -17,6 +15,7 @@ function App() {
   const [selectedYear, setSelectedYear] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const apiKey = import.meta.env.VITE_OMDB_API_KEY;
@@ -61,35 +60,47 @@ function App() {
     });
   });
 
+  const handleMovieClick = (movie) => {
+    navigate(`/movie/${movie.imdbID}`, { state: { movie } });
+  };
+
   return (
     <div className="app-container">
-      <h1>Movie Finder</h1>
-
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search for a movie..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <Sidebar /> 
+      <div className="main-content">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Homepage
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                setSelectedGenre={setSelectedGenre}
+                setSelectedRating={setSelectedRating}
+                setSelectedRuntime={setSelectedRuntime}
+                selectedYear={selectedYear}
+                setSelectedYear={setSelectedYear}
+                setSortBy={setSortBy}
+                sortedMovies={sortedMovies}
+                totalMovies={sortedMovies.length}
+                averageRating={(
+                  sortedMovies.reduce((sum, movie) => sum + (parseFloat(movie.imdbRating) || 0), 0) /
+                  (sortedMovies.length || 1)
+                ).toFixed(1)}
+                genreCounts={sortedMovies.reduce((counts, movie) => {
+                  movie.Genre?.split(", ").forEach(genre => {
+                    counts[genre] = (counts[genre] || 0) + 1;
+                  });
+                  return counts;
+                }, {})}
+                error={error}
+                onMovieClick={handleMovieClick}
+              />
+            }
+          />
+          <Route path="/movie/:id" element={<DetailView />} />
+        </Routes>
       </div>
-      <Filters
-        setSelectedGenre={setSelectedGenre}
-        setSelectedRating={setSelectedRating}
-        setSelectedRuntime={setSelectedRuntime}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        setSortBy={setSortBy}
-      />
-      {sortedMovies.length > 0 && (
-        <Stats
-          totalMovies={totalMovies}
-          averageRating={averageRating}
-          genreCounts={genreCounts}
-        />
-      )}
-      {error}
-      <MovieList movies={sortedMovies} />
     </div>
   );
 }

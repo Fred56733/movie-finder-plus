@@ -3,11 +3,48 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px; /* Set a fixed width for the card */
+  width: 250px;
   padding: 20px;
   margin: 15px;
-  border: 1px solid #ddd; /* Light border for the card */
-  border-radius: 8px; /* Rounded corners */
-  background-color: #ffffff; /* White background */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border: 1px solid #ddd;
+  border-radius: 12px; 
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* Hover effect for the card */
+.movie-card:hover {
+  transform: translateY(-10px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the movie poster */
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px; 
+  margin-bottom: 15px;
+}
+
+/* Style the movie title */
+.movie-card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Style the movie details */
+.movie-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+  text-align: center;
+}
+
+/* Highlight strong text */
+.movie-card p strong {
+  color: #007bff; 
 }

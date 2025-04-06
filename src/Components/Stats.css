@@ -1,0 +1,32 @@
+h3 {
+    color: #333; 
+    font-size: 18px; 
+    margin-bottom: 10px; 
+    text-align: center;
+}
+
+.stats{
+    background-color: aliceblue;
+    padding: 20px 5px; 
+    border-radius: 25px;
+    margin-top: 20px;
+}
+
+.stats-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start;
+}
+
+.bar-graph,
+.line-graph {
+    flex: 1; 
+    max-width: 50%; 
+}
+
+.bar-graph canvas,
+.line-graph canvas {
+    width: 100%; 
+    height: auto; 
+}
+
