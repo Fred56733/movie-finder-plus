@@ -18,7 +18,6 @@ function DetailView() {
 
   return (
     <div className="movie-detail container">
-      <button className="back-button" onClick={() => navigate(-1)}>Back</button>
       <div className="card">
         <img className="card-image" src={movie.Poster} alt={movie.Title} />
         <div className="card-content">

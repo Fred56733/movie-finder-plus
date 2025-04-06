@@ -16,7 +16,7 @@ function Sidebar() {
       </button>
       {!isCollapsed && (
         <>
-          <h2>Movie Finder Plus</h2>
+          <h2>Movie Finder Plus 🍿</h2>
           <ul>
             <li>
               <Link to="/">Home</Link>

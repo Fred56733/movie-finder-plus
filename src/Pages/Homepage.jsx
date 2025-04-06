@@ -21,7 +21,7 @@ function Homepage({
   onMovieClick,
 }) {
   return (
-    <div>
+    <div className='main-container'>
       {sortedMovies.length > 0 && (
         <Stats
         totalMovies={totalMovies}
